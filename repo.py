@@ -119,7 +119,7 @@ def insert_analyzes(doctor, patient, description, result, date):
 
 
 def insert_report(patient, direction, receipt, analyzes):
-    Report.create(patient=patient, direction=direction, receipt=receipt, analyzes=analyzes)
+    return Report.create(patient=patient, direction=direction, receipt=receipt, analyzes=analyzes)
 
 
 db.create_tables([Doctor, Patient, Direction, Receipt, Analyzes, Report])

@@ -1,6 +1,7 @@
 from datetime import datetime, date
 from re import sub
 from random import choice
+from logging import info as log_i
 
 from constant import NEGATIVE, POSITIVE
 from repo import find_new_directions, insert_receipt, insert_analyzes, insert_report, close_direction
@@ -40,17 +41,15 @@ def check_data_from_str(value: str, type: str = ""):
 
 
 def simulation():
+    log_i(f'simulate work doctor')
     new_directions = find_new_directions()
     for direction in new_directions:
-        print(type(direction))
-        print(direction)
         receipt = insert_receipt(direction.doctor, direction.patient, random_receipt_description())
-        print(f"{type(receipt)} | {receipt}")
         analyzes = insert_analyzes(doctor=direction.doctor, patient=direction.patient,
                                    description=random_analyzes_description(), result=random_analyzes_result(),
                                    date=date.today())
-        print(f"{type(analyzes)} | {analyzes}")
-        insert_report(direction.patient, direction, receipt, analyzes)
+        report = insert_report(direction.patient, direction, receipt, analyzes)
+        log_i(f'for report {report.id} set receipt - {receipt.id} and analyzes - {analyzes.id}')
         close_direction(direction)
 
 

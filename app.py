@@ -1,3 +1,6 @@
+from logging import basicConfig, DEBUG, info as log_i
+from datetime import datetime
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 from repo import insert_patient, get_all_doctors, get_all_patient, insert_direction, get_all_report
 
@@ -5,10 +8,12 @@ from helpers import check_data_from_str, simulation
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'oaiheiuheih-secret-key'
+basicConfig(filename=f'log-{datetime.now()}.log', level=DEBUG)
 
 
 @app.route("/")
 def index():
+    log_i(f'open view index. remote_addr - {request.remote_addr}')
     return render_template("index.html")
 
 
@@ -25,8 +30,10 @@ def registration():
             flash('Данные введены не корректно')
             return redirect(url_for('registration'))
         else:
+            log_i(f'registration new patient. remote_addr - {request.remote_addr}')
             insert_patient(fio, date, snils, polis, address, phone)
             return redirect(url_for("index"))
+    log_i(f'open view registration. remote_addr - {request.remote_addr}')
     return render_template("registration.html")
 
 
@@ -41,9 +48,11 @@ def issuing():
             flash('Данные введены не корректно')
             return redirect(url_for('issuing'))
         else:
+            log_i(f'registration new direction. remote_addr - {request.remote_addr}')
             insert_direction(doctor, patient, cabinet, date)
             simulation()
             return redirect(url_for("index"))
+    log_i(f'open view issuing. remote_addr - {request.remote_addr}')
     doctors = get_all_doctors()
     patients = get_all_patient()
     return render_template("issuing.html", doctors=doctors, patients=patients)
