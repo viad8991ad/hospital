@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <form method="POST">
+        <div class="form-floating mb-3">
+            <input id="fio-input" type="text" class="form-control" placeholder="ФИО" name="fio">
+            <label for="fio-input">ФИО</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input id="date-input" class="form-control" type="date" value="" name="date">
+            <label for="date-input">Дата рождения</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input id="snils-input" type="text" class="form-control" placeholder="Снилс" name="snils">
+            <label for="snils-input">Снилс</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input id="polis-input" type="text" class="form-control" placeholder="Полис" name="polis">
+            <label for="polis-input">Полис</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input id="address-input" type="text" class="form-control" placeholder="Адрес проживания" name="address">
+            <label for="address-input">Адрес проживания</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input id="phone-input" type="text" class="form-control" placeholder="Телефон" name="phone">
+            <label for="phone-input">Телефон</label>
+        </div>
+
+        <button type="submit" class="btn btn-dark">Отправить</button>
+    </form>
+{% endblock %}

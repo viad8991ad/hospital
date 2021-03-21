@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <button type="button" class="btn btn-dark">
+                    <a href="{{ url_for('registration') }}" class="link-light text-decoration-none">
+                        Зарегестрировать пациента
+                    </a>
+                </button>
+
+            </div>
+            <div class="col-sm">
+                <button type="button" class="btn btn-dark">
+                    <a href="{{ url_for('issuing') }}" class="link-light text-decoration-none">Выдать направление</a>
+                </button>
+            </div>
+
+            <div class="col-sm">
+                <button type="button" class="btn btn-dark">
+                    <a href="{{ url_for('history') }}" class="link-light text-decoration-none">История</a>
+                </button>
+            </div>
+        </div>
+    </div>
+    <style>
+        button {
+            width: 100%;
+        }
+    </style>
+{% endblock %}

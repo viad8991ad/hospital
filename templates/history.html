@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for report in reports %}
+        <div class="card text-white bg-dark mb-3"> <!-- style="max-width: 18rem;" -->
+            <div class="card-header">{{ report.id }}) {{ report.patient.fio }}</div>
+            <div class="card-body">
+                <h5 class="card-title">Доктор: {{ report.receipt.doctor.fio }}</h5>
+                <p class="card-text">Рецепт: {{ report.receipt.description }}</p>
+                <p class="card-text">Анализы: {{ report.analyzes.description }}</p>
+                <p class="card-text">Результат: {{ report.analyzes.result }}</p>
+            </div>
+        </div>
+
+        {#        <div class="card horizontal">#}
+        {#            <div class="card-stacked">#}
+        {#                <div class="card-content">#}
+        {#                    <h5>{{ report.id }}) {{ report.patient.fio }}</h5>#}
+        {#                    <h6>Дата приема {{ report.direction.date }}</h6>#}
+        {##}
+        {# patient #}
+        {#                    <p>День рождения: {{ report.patient.birthday }}</p>#}
+        {#                    <p>СНИЛС: {{ report.patient.snils }}</p>#}
+        {#                    <p>Полис: {{ report.patient.polis }}</p>#}
+        {#                    <p>Адрес проживания: {{ report.patient.address }}</p>#}
+        {#                    <p>Телефон: {{ report.patient.phone }}</p>#}
+        {##}
+        {# direction #}
+        {#                    <p>Кабинет: {{ report.direction.cabinet }}</p>#}
+        {#                    <p>Дата: {{ report.direction.date }}</p>#}
+        {#                    <p>Стата: {{ report.direction.state }}</p>#}
+        {##}
+        {##}
+        {# receipt #}
+        {#                    <p>Рецепт: {{ report.receipt.description }}</p>#}
+        {#                    <p>Доктор: {{ report.receipt.doctor.fio }}</p>#}
+        {##}
+        {# analyzes #}
+        {#                    <p>Анализы: {{ report.analyzes.description }}</p>#}
+        {#                    <p>Результат: {{ report.analyzes.result }}</p>#}
+        {#                    <p>Дата: {{ report.analyzes.date }}</p>#}
+        {#                </div>#}
+        {#            </div>#}
+        {#        </div>#}
+    {% endfor %}
+{% endblock %}

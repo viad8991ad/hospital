@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <form method="POST">
+        <div class="form-floating mb-3">
+            <select id="doctors-select" class="form-select" name="doctor">
+                {% for doctor in doctors %}
+                    <option value="{{ doctor.id }}">{{ doctor.fio }} ({{ doctor.speciality }})</option>
+                {% endfor %}
+            </select>
+            <label for="doctors-select">Лечащий врач</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input id="date-input" class="form-control" type="date" value="" name="date">
+            <label for="date-input">Дата приема</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input id="cabinet-input" type="text" class="form-control" placeholder="Кабинет" name="cabinet">
+            <label for="cabinet-input">Кабинет</label>
+        </div>
+        <div class="form-floating mb-3">
+            <select id="patient-select" class="form-select" name="patient">
+                {% for patient in patients %}
+                    <option value="{{ patient.id }}">{{ patient.fio }}</option>"
+                {% endfor %}
+            </select>
+            <label for="patient-select">Пациент</label>
+        </div>
+        <button type="submit" class="btn btn-dark">Отправить</button>
+    </form>
+{% endblock %}
